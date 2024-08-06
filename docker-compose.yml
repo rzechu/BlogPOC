@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  blogpoc.webapi:
+    image: ${DOCKER_REGISTRY-}blogpocwebapi
+    build:
+      context: .
+      dockerfile: BlogPOC.WebApi/Dockerfile
+    ports:
+    - "8080:8080"

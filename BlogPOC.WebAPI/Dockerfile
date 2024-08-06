@@ -9,17 +9,17 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["BlogPOCWebApi/BlogPOCWebApi.csproj", "BlogPOCWebApi/"]
-RUN dotnet restore "./BlogPOCWebApi/BlogPOCWebApi.csproj"
+COPY ["BlogPoc.WebAPI/BlogPOC.WebAPI.csproj", "BlogPOCWebAPI/"]
+RUN dotnet restore "./BlogPOC.WebAPI/BlogPOC.WebAPI.csproj"
 COPY . .
-WORKDIR "/src/BlogPOCWebApi"
-RUN dotnet build "./BlogPOCWebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/BlogPOCWebAPI"
+RUN dotnet build "./BlogPOC.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./BlogPOCWebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./BlogPOC.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "BlogPOCWebApi.dll"]
+ENTRYPOINT ["dotnet", "BlogPOC.WebAPI.dll"]
