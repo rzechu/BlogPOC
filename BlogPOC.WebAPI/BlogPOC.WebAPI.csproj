@@ -20,7 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BLOGPOC.Application\BlogPOC.Application.csproj" />
+    <ProjectReference Include="..\BlogPOC.Application\BlogPOC.Application.csproj" />
+    <ProjectReference Include="..\BlogPOC.Core\BlogPOC.Core.csproj" />
     <ProjectReference Include="..\BlogPOC.Infrastructure\BlogPOC.Infrastructure.csproj" />
   </ItemGroup>
 

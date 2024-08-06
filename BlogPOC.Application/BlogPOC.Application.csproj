@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\BlogPOC.Core.csproj" />
+    <ProjectReference Include="..\BlogPOC.Core\BlogPOC.Core.csproj" />
   </ItemGroup>
 
 </Project>
