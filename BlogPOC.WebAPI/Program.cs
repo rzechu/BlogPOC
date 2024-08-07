@@ -1,12 +1,10 @@
+using BlogPOC.WebAPI.Configurations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<BlogContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultCdonnection"));
-});
-builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
-builder.Services.AddScoped<BlogPostService>();
+
+builder.Services.ConfigureServices(builder.Configuration);
         
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -23,7 +21,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
 
 app.MapControllers();
 

@@ -1,4 +1,6 @@
-﻿namespace BlogPOC.Infrastructure.Repositories;
+﻿using BlogPOC.Core.Exceptions;
+
+namespace BlogPOC.Infrastructure.Repositories;
 
 public class BlogPostRepository(BlogContext context) : IBlogPostRepository
 {
@@ -9,7 +11,7 @@ public class BlogPostRepository(BlogContext context) : IBlogPostRepository
 
     public async Task<BlogPost> GetByIdAsync(int id)
     {
-        return await context.BlogPosts.FindAsync(id);
+        return await context.BlogPosts.FindAsync(id) ?? throw new NotFoundException(nameof(BlogPost), id.ToString());
     }
 
     public async Task AddAsync(BlogPost blogPost)

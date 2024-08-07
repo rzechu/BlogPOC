@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\**" />
+    <Content Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
@@ -24,11 +31,6 @@
     <ProjectReference Include="..\BlogPOC.Application\BlogPOC.Application.csproj" />
     <ProjectReference Include="..\BlogPOC.Core\BlogPOC.Core.csproj" />
     <ProjectReference Include="..\BlogPOC.Infrastructure\BlogPOC.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Configurations\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
