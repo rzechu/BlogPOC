@@ -1,3 +1,6 @@
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+
 namespace BlogPOC.UserAPI;
 
 public class Program
@@ -9,12 +12,20 @@ public class Program
         // Add services to the container.
 
         builder.Services.AddControllers();
+        builder.Services.AddDbContext<UserContext>(options =>
+        {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+        });
+
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<UserService>();
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        builder.Services.AddHealthChecks()
+            .AddSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), name: "SQL Server");
 
         var app = builder.Build();
 
@@ -32,6 +43,11 @@ public class Program
 
         app.MapControllers();
 
+        app.MapHealthChecks("/api/health", new HealthCheckOptions()
+        {
+            Predicate = _ => true,
+            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+        });
         app.Run();
     }
 }

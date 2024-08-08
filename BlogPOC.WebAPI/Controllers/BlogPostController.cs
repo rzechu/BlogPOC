@@ -1,17 +1,13 @@
-﻿using BlogPOC.Application.Services;
-using BlogPOC.Core.Entities;
-using Microsoft.AspNetCore.Mvc;
-
-namespace BlogPOC.WebAPI.Controllers;
+﻿namespace BlogPOC.WebAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 public class BlogPostsController : ControllerBase
 {
     private readonly BlogPostService _blogPostService;
-    private readonly UserService _userService;
+    private readonly IUserService _userService;
 
-    public BlogPostsController(BlogPostService blogPostService, UserService userService)
+    public BlogPostsController(BlogPostService blogPostService, IUserService userService)
     {
         _blogPostService = blogPostService;
         _userService = userService;

@@ -1,7 +1,4 @@
-﻿using BlogPOC.Application.Interfaces;
-using BlogPOC.Application.Services;
-
-namespace BlogPOC.WebAPI.Configurations;
+﻿namespace BlogPOC.WebAPI.Configurations;
 
 public static class ServiceConfiguration
 {
@@ -9,7 +6,7 @@ public static class ServiceConfiguration
     {
         services.AddDbContext<BlogContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("DefaultCdonnection"));
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         });
         services.AddScoped<IBlogPostRepository, BlogPostRepository>();
         services.AddScoped<BlogPostService>();
@@ -19,5 +16,9 @@ public static class ServiceConfiguration
             client.BaseAddress = new Uri("http://blogpoc.userapi");
         });
         services.AddScoped<IUserService, UserService>();
+
+        services.AddHealthChecks()
+        .AddSqlServer(configuration.GetConnectionString("DefaultConnection"), name: "SQL Server")
+        .AddUrlGroup(new Uri("http://blogpoc.userapi/api/health"), name: "User API");
     }
 }

@@ -1,10 +1,8 @@
-﻿namespace BlogPOC.UserAPI.Interfaces;
+﻿using BlogPOC.Core.Interfaces;
 
-public interface IUserRepository
+namespace BlogPOC.UserAPI.Interfaces;
+
+public interface IUserRepository : IGenericRepository<User>
 {
-    Task<IEnumerable<User>> GetAllAsync();
-    Task<User> GetByIdAsync(int id);
-    Task AddAsync(User user);
-    Task UpdateAsync(User user);
-    Task DeleteAsync(int id);
+
 }

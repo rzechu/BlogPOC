@@ -2,7 +2,7 @@
 
 public class BlogContext: DbContext
 {
-    public BlogContext(DbContextOptions options) : base(options)
+    public BlogContext(DbContextOptions<BlogContext> options) : base(options)
     { 
 
     }
