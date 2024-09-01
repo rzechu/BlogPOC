@@ -1,0 +1,9 @@
+﻿global using Blog.Application.Interfaces;
+global using Blog.Application.Services;
+global using Blog.Core.Entities;
+global using Blog.Core.Interfaces;
+global using Blog.Infrastructure.Data;
+global using Blog.Infrastructure.Repositories;
+global using Blog.Application.Services;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;

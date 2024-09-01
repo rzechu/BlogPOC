@@ -7,7 +7,7 @@
     <ProjectGuid>2f78e65b-ed7c-40ad-8386-17dea4e6ab67</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>blogpoc.webapi</DockerServiceName>
+    <DockerServiceName>blog.webapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

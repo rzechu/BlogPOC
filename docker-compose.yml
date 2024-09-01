@@ -1,11 +1,11 @@
 version: '3.4'
 
 services:
-  blogpoc.webapi:
-    image: ${DOCKER_REGISTRY-}blogpocwebapi
+  blogwebapi:
+    image: ${DOCKER_REGISTRY-}blogwebapi
     build:
       context: .
-      dockerfile: BlogPOC.WebAPI/Dockerfile
+      dockerfile: Blog.WebAPI/Dockerfile
     ports:
       - "8080:8080"
     environment:
@@ -13,12 +13,13 @@ services:
       - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=BlogDb;User=sa;Password=Your_password123;TrustServerCertificate=true; 
     depends_on:
       - sqlserver
+      - rabbitmq 
 
-  blogpoc.userapi:
-    image: ${DOCKER_REGISTRY-}blogpocuserapi
+  bloguserapi:
+    image: ${DOCKER_REGISTRY-}bloguserapi
     build:
       context: .
-      dockerfile: BlogPOC.UserAPI/Dockerfile
+      dockerfile: Blog.UserAPI/Dockerfile
     ports:
       - "8081:8080"
     environment:
@@ -31,3 +32,9 @@ services:
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"  # RabbitMQ
+      - "15672:15672"  # management UI

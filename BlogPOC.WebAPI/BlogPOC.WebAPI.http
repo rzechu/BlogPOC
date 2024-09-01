@@ -1,6 +1,0 @@
-@BlogPOCWebApi_HostAddress = http://localhost:5212
-
-GET {{BlogPOCWebApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
